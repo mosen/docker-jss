@@ -1,0 +1,6 @@
+#!/usr/bin/expect -f
+spawn sh /home/docker/jssinstaller.run
+expect "Proceed?  (y/n): "
+send "y\r"
+expect "$ "
+
