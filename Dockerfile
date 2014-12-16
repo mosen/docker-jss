@@ -16,6 +16,8 @@ RUN mkdir -p /home/docker/jss/logs
 RUN mkdir -p /Library/JSS/
 RUN ln -s /home/docker/jss/logs /Library/JSS/Logs
 RUN chown tomcat7:tomcat7 /home/docker/jss/logs
+ADD server.xml /var/lib/tomcat7/conf/server.xml
 
 EXPOSE 8443
-EXPOSE 8080
+
+CMD /etc/init.d/tomcat7 start && tail -f /var/lib/tomcat7/logs/*
