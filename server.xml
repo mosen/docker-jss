@@ -92,7 +92,7 @@
 		enableLookups="false" disableUploadTimeout="true"
 		acceptCount="100" scheme="https" secure="true"
 		clientAuth="false" sslProtocol="TLS"
-		keystoreFile="/etc/tomcat7/keystore"
+		keystoreFile="/tomcat/conf/.keystore"
 		keystorePass="changeit" />
 
     <!-- Define an AJP 1.3 Connector on port 8009 -->
