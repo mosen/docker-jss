@@ -3,7 +3,7 @@ jss-docker
 
 A Dockerfile for building a [JAMF Casper Software Suite](http://www.jamfsoftware.com/products/casper-suite/) container.  
 
-Based on [tutum/tomcat](https://registry.hub.docker.com/u/tutum/tomcat/).
+Based on [the official Tomcat image, version 7.0.59-jre7](https://registry.hub.docker.com/_/tomcat/).
 
 How To Use The Container:
 -----
