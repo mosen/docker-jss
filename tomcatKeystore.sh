@@ -1,6 +1,6 @@
 #!/bin/bash
 
-keypass=password
+keypass=changeit
 CN=fqdn
 OU=organizational_unit
 O=organization
