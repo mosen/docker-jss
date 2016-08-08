@@ -1,0 +1,10 @@
+[template]
+prefix = "/jss"
+src = "server.xml.tmpl"
+dest = "/usr/local/tomcat/conf/server.xml"
+keys = [
+    "/tls/cert",
+    "/tls/key",
+]
+check_cmd = "catalina.sh configtest"
+

@@ -1,0 +1,35 @@
+version: '2'
+services:  
+  mysql:
+    image: mysql
+    volumes:
+      - db-data:/var/lib/mysql
+    ports:
+      - "13306:3306"
+    environment:
+      - MYSQL_ROOT_PASSWORD=mysecretpassword
+      - MYSQL_USER=jamfsoftware
+      - MYSQL_PASSWORD=jamfsw03
+      - MYSQL_DATABASE=jamfsoftware
+  
+  jss:
+    build: .
+    ports:
+      - "8444:8443"
+      - "9080:8080"
+    links:
+      - mysql:db
+    depends_on:
+      - mysql
+    environment:
+      - JSS_DB_HOST=db
+      - JSS_DB_PORT=3306
+      - JSS_DB_NAME=jamfsoftware
+      - JSS_DB_USERNAME=jamfsoftware
+      - JSS_DB_PASSWORD=jamfsw03
+      
+volumes:
+  db-data:
+    driver: local
+
+  

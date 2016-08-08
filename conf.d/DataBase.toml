@@ -1,0 +1,13 @@
+[template]
+prefix = "/jss"
+src = "DataBase.xml.tmpl"
+dest = "/usr/local/tomcat/webapps/ROOT/WEB-INF/xml/DataBase.xml"
+keys = [
+    "/db/host",
+    "/db/port",
+    "/db/name",
+    "/db/username",
+    "/db/password"
+]
+check_cmd = "catalina.sh configtest"
+reload_cmd = "catalina.sh stop && catalina.sh start"
