@@ -1,0 +1,21 @@
+filebeat:
+  prospectors:
+    -
+      paths:
+        - "/Library/JSS/Logs/JAMFSoftwareServer.log"
+      document_type: jss
+    -
+      paths:
+        - "/Library/JSS/Logs/JSSAccess.log"
+      document_type: jss_access
+    -
+      paths:
+        - "/Library/JSS/Logs/JAMFChangeManagement.log"
+      document_type: jss_changemgmt
+
+output:
+  elasticsearch:
+    hosts: [$HOSTS]
+#  console:
+#    pretty: true
+

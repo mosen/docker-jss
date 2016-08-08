@@ -22,7 +22,7 @@ ADD confd /usr/bin/confd
 RUN chmod +x /usr/bin/confd
 
 # add etcdctl so that etcd is always aware of the number of jss' running.
-ENV ETCD_VERSION 3.0.2
+ENV ETCD_VERSION 3.0.4
 
 RUN curl -LOks https://github.com/coreos/etcd/releases/download/v${ETCD_VERSION}/etcd-v${ETCD_VERSION}-linux-amd64.tar.gz && \
     tar zxvf etcd-v${ETCD_VERSION}-linux-amd64.tar.gz && \
