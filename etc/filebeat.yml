@@ -14,8 +14,5 @@ filebeat:
       document_type: jss_changemgmt
 
 output:
-  elasticsearch:
-    hosts: [$HOSTS]
-#  console:
-#    pretty: true
-
+  logstash:
+    hosts: ['logshipper:5044']

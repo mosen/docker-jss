@@ -30,14 +30,21 @@ services:
       - JSS_DB_USERNAME=jamfsoftware
       - JSS_DB_PASSWORD=jamfsw03
 
-  logging:
-    image: prima/filebeat:1.2.3
+  logshipper:
+    image: logstash:2.3.4
     volumes:
-      - ./filebeat.yml:/filebeat.yml
-      - log-data:/Library/JSS/Logs
-    environment:
-      - HOSTS="'localhost:9200'"
+      - "./etc/logstash.conf:/config-dir/logstash.conf"
+    ports:
+      - 5044
+    command: "logstash -f /config-dir/logstash.conf"
 
+  logreader:
+    image: prima/filebeat:1.2.3
+    links:
+      - logshipper:logshipper
+    volumes:
+      - "./etc/filebeat.yml:/filebeat.yml"
+      - log-data:/Library/JSS/Logs
 
       
 volumes:
