@@ -12,7 +12,10 @@ filebeat:
       paths:
         - "/Library/JSS/Logs/JAMFChangeManagement.log"
       document_type: jss_changemgmt
-
+    -
+      paths:
+        - "/usr/local/tomcat/logs/catalina.*.log"
+      document_type: catalina
 output:
   logstash:
     hosts: ['logshipper:5044']
