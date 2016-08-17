@@ -1,0 +1,9 @@
+[template]
+prefix = "/jss"
+src = "cache.properties.tmpl"
+dest = "/usr/local/tomcat/webapps/ROOT/WEB-INF/classes/dal/cache.properties"
+keys = [
+    "/cache/type",
+]
+check_cmd = "catalina.sh configtest"
+reload_cmd = "catalina.sh stop && catalina.sh start"

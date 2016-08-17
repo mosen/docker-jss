@@ -11,7 +11,10 @@ services:
       - MYSQL_USER=jamfsoftware
       - MYSQL_PASSWORD=jamfsw03
       - MYSQL_DATABASE=jamfsoftware
-  
+
+  memcached:
+    image: memcached
+
   jss:
     build: .
     volumes:
@@ -21,6 +24,7 @@ services:
       - "9080:8080"
     links:
       - mysql:db
+      - memcached:memcached
     depends_on:
       - mysql
     environment:
@@ -29,9 +33,19 @@ services:
       - JSS_DB_NAME=jamfsoftware
       - JSS_DB_USERNAME=jamfsoftware
       - JSS_DB_PASSWORD=jamfsw03
+      - JSS_CACHE_TYPE=memcached
+      - JSS_MEMCACHED_SERVERS_0=memcached:11211
+      - JSS_MEMCACHED_TTL=120
+
+  elasticsearch:
+    image: elasticsearch
 
   logshipper:
     image: logstash:2.3.4
+    depends_on:
+      - elasticsearch
+    links:
+      - elasticsearch:elasticsearch
     volumes:
       - "./etc/logstash.conf:/config-dir/logstash.conf"
     ports:
@@ -40,11 +54,26 @@ services:
 
   logreader:
     image: prima/filebeat:1.2.3
+    depends_on:
+      - jss
     links:
       - logshipper:logshipper
     volumes:
       - "./etc/filebeat.yml:/filebeat.yml"
       - log-data:/Library/JSS/Logs
+
+#  dash:
+#    image: bruienne/macdash:latest
+#    depends_on:
+#      - jss
+#    ports:
+#      - "8000:8000"
+#    links:
+#      - jss:jss
+#    environment:
+#      - JSS_URL=https://jss
+#      - JSS_USER=admin
+#      - JSS_PASSWORD=password
 
       
 volumes:

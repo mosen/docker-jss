@@ -1,0 +1,6 @@
+# Valid options are ehcache or memcached
+{{if exists "/cache/type"}}
+cache.type={{getv "/cache/type"}}
+{{else}}
+cache.type=ehcache
+{{end}}

@@ -1,0 +1,12 @@
+[template]
+prefix = "/jss"
+src = "memcached.properties.tmpl"
+dest = "/usr/local/tomcat/webapps/ROOT/WEB-INF/classes/dal/memcached.properties"
+keys = [
+    "/memcached/servers",
+    "/memcached/ttl",
+    "/memcached/uniqueid",
+    "/memcached/elasticache",
+]
+check_cmd = "catalina.sh configtest"
+reload_cmd = "catalina.sh stop && catalina.sh start"

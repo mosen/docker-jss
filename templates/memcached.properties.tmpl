@@ -1,0 +1,13 @@
+{{range gets "/memcached/servers/*"}}
+memcached.endpoints[{{base .Key}}]={{.Value}}
+{{end}}
+
+memcached.timeToLiveSeconds={{getv "/memcached/ttl"}}
+
+{{if exists "/memcached/uniqueid"}}
+memcached.uniqueId={{getv "/memcached/uniqueid"}}
+{{end}}
+
+{{if exists "/memcached/elasticache"}}
+memcached.aws.elasticache={{getv "/memcached/elasticache"}}
+{{end}}
