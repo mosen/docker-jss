@@ -25,8 +25,10 @@ services:
     links:
       - mysql:db
       - memcached:memcached
+      - logshipper:logshipper
     depends_on:
       - mysql
+      - logshipper
     environment:
       - JSS_DB_HOST=db
       - JSS_DB_PORT=3306
@@ -36,6 +38,8 @@ services:
       - JSS_CACHE_TYPE=memcached
       - JSS_MEMCACHED_SERVERS_0=memcached:11211
       - JSS_MEMCACHED_TTL=120
+      - JSS_LOG4J_HOST=logshipper
+      - JSS_LOG4J_PORT=4560
 
   elasticsearch:
     image: elasticsearch
@@ -50,6 +54,7 @@ services:
       - "./etc/logstash.conf:/config-dir/logstash.conf"
     ports:
       - 5044
+      - 4560
     command: "logstash -f /config-dir/logstash.conf"
 
   logreader:
@@ -62,18 +67,18 @@ services:
       - "./etc/filebeat.yml:/filebeat.yml"
       - log-data:/Library/JSS/Logs
 
-#  dash:
-#    image: bruienne/macdash:latest
-#    depends_on:
-#      - jss
-#    ports:
-#      - "8000:8000"
-#    links:
-#      - jss:jss
-#    environment:
-#      - JSS_URL=https://jss
-#      - JSS_USER=admin
-#      - JSS_PASSWORD=password
+  dash:
+    image: bruienne/macdash:latest
+    depends_on:
+      - jss
+    ports:
+      - "8445:8000"
+    links:
+      - jss:jss
+    environment:
+      - JSS_URL=https://jss:8444
+      - JSS_USER=admin
+      - JSS_PASSWORD=password
 
       
 volumes:

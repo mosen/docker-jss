@@ -9,4 +9,4 @@ keys = [
     "/memcached/elasticache",
 ]
 check_cmd = "catalina.sh configtest"
-reload_cmd = "catalina.sh stop && catalina.sh start"
+# reload_cmd = "catalina.sh stop && catalina.sh start"

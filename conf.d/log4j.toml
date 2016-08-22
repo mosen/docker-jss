@@ -1,0 +1,10 @@
+[template]
+prefix = "/jss"
+src = "log4j.properties.tmpl"
+dest = "/usr/local/tomcat/webapps/ROOT/WEB-INF/classes/log4j.properties"
+keys = [
+    "/log4j/host",
+    "/log4j/port",
+]
+check_cmd = "catalina.sh configtest"
+# reload_cmd = "catalina.sh stop && catalina.sh start"
