@@ -18,8 +18,13 @@ RUN mkdir -p /Library/JSS/Logs
 RUN mkdir -p /etc/confd/{conf.d,templates}
 ADD ./conf.d /etc/confd/conf.d
 ADD ./templates /etc/confd/templates
-ADD confd /usr/bin/confd
-RUN chmod +x /usr/bin/confd
+
+ENV CONFD_VERSION 0.11.0
+RUN curl -LOks https://github.com/kelseyhightower/confd/releases/download/v${CONFD_VERSION}/confd-${CONFD_VERSION}-linux-amd64 && \
+    cp confd-${CONFD_VERSION}-linux-amd64 /usr/bin/confd && \
+    rm confd-${CONFD_VERSION}-linux-amd64 && \
+    chmod +x /usr/bin/confd
+
 
 # add etcdctl so that etcd is always aware of the number of jss' running.
 ENV ETCD_VERSION 3.0.4
