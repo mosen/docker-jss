@@ -18,6 +18,7 @@ log4j.appender.JAMFCMSYSLOG.layout.ConversionPattern=%m%n
 log4j.appender.JAMFCMSYSLOG.Facility=local2
 
 ! The basic appender definitions for com.jamfsoftware.jss classes
+{{if exists "/log4j"}}
 log4j.appender.JAMF=org.apache.log4j.net.SocketAppender
 log4j.appender.JAMF.port={{getv "/log4j/port"}}
 log4j.appender.JAMF.remoteHost={{getv "/log4j/host"}}
@@ -26,7 +27,23 @@ log4j.appender.JAMF.remoteHost={{getv "/log4j/host"}}
 log4j.appender.JSSACCESSLOG=org.apache.log4j.net.SocketAppender
 log4j.appender.JSSACCESSLOG.port={{getv "/log4j/port"}}
 log4j.appender.JSSACCESSLOG.remoteHost={{getv "/log4j/host"}}
+{{else}}
+log4j.appender.JAMF=org.apache.log4j.RollingFileAppender
+log4j.appender.JAMF.File=/Library/JSS/Logs/JAMFSoftwareServer.log
+log4j.appender.JAMF.MaxFileSize=100MB
+log4j.appender.JAMF.MaxBackupIndex=10
+log4j.appender.JAMF.layout=org.apache.log4j.PatternLayout
+log4j.appender.JAMF.layout.ConversionPattern=%d{ISO8601} [%-5p] [%-11.11t] [%-25.25c{1}] - %m%n
+log4j.appender.JAMF.encoding=UTF-8
 
+log4j.appender.JSSACCESSLOG=org.apache.log4j.RollingFileAppender
+log4j.appender.JSSACCESSLOG.File=/Library/JSS/Logs/JSSAccess.log
+log4j.appender.JSSACCESSLOG.MaxFileSize=100MB
+log4j.appender.JSSACCESSLOG.MaxBackupIndex=10
+log4j.appender.JSSACCESSLOG.layout=org.apache.log4j.PatternLayout
+log4j.appender.JSSACCESSLOG.layout.ConversionPattern=%d{ISO8601}: %m%n
+log4j.appender.JSSACCESSLOG.encoding=UTF-8
+{{end}}
 
 log4j.logger.com.jamfsoftware.jss.changemanagement.file=INFO,JAMFCMFILE
 log4j.additivity.com.jamfsoftware.jss.changemanagement.file=false

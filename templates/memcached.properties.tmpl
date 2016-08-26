@@ -1,3 +1,5 @@
+{{if exists "/memcached"}}
+
 {{range gets "/memcached/servers/*"}}
 memcached.endpoints[{{base .Key}}]={{.Value}}
 {{end}}
@@ -10,4 +12,6 @@ memcached.uniqueId={{getv "/memcached/uniqueid"}}
 
 {{if exists "/memcached/elasticache"}}
 memcached.aws.elasticache={{getv "/memcached/elasticache"}}
+{{end}}
+
 {{end}}
