@@ -26,6 +26,7 @@ There are several docker-compose files in the repository available to showcase a
 - `docker-compose.yml`: A basic JSS MySQL setup, adopted from Nick McSpadden's original idea.
 - `docker-compose-logging.yml`: An extreme ELK example which forgoes all file based logging.
 - `docker-compose-cluster.yml`: Master-Slave cluster example
+- `docker-compose-kitchensink.yml`: Absolutely every possible facet of 3rd party integration
 
 Confd Variables
 ---------------
@@ -46,6 +47,7 @@ JSS_DB_PASSWORD=<mysql password>
 ## Optional Configuration ##
 
 ```
+CONFD_BACKEND=env # see confd docs for alternative backends
 JSS_CACHE_TYPE=(memcached or ehcache)
 JSS_MEMCACHED_SERVERS_0=memcached:11211 # first memcached server (index 0)
 JSS_MEMCACHED_TTL=120

@@ -15,7 +15,6 @@ ADD local_policy.jar /usr/lib/jvm/java-7-openjdk-amd64/jre/lib/security/local_po
 RUN mkdir -p /Library/JSS/Logs
 
 # confd stuff
-RUN mkdir -p /etc/confd/{conf.d,templates}
 ADD ./conf.d /etc/confd/conf.d
 ADD ./templates /etc/confd/templates
 

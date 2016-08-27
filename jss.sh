@@ -4,6 +4,7 @@ export SELF_SIGNED=${SELF_SIGNED:-"1"}
 export TLS_CERT=${TLS_CERT:-"/server.crt"}
 export TLS_KEY=${TLS_KEY:-"/server.key"}
 export CA_CERT=${CA_CERT:-"/ca.crt"}
+export CONFD_BACKEND=${CONFD_BACKEND:-"env"}
 
 KEYSTORE_PATH=/usr/local/tomcat/conf/.keystore
 
@@ -15,7 +16,7 @@ else
 	/usr/bin/keytool -import -alias tomcat -keystore ${KEYSTORE_PATH} -file ${TLS_CERT}
 fi
 
-/usr/bin/confd -onetime -backend env
+/usr/bin/confd -onetime -backend ${CONFD_BACKEND}
 
 
 
