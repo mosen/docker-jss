@@ -25,10 +25,11 @@ services:
     links:
       - mysql:db
       - logshipper:logshipper
-      - memcached
+      - memcached:memcached
     depends_on:
       - mysql
       - logshipper
+      - memcached
     environment:
       - JSS_DB_HOST=db
       - JSS_DB_PORT=3306
