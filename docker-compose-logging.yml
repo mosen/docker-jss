@@ -57,16 +57,6 @@ services:
       - 4560
     command: "logstash -f /config-dir/logstash.conf"
 
-  logreader:
-    image: prima/filebeat:1.2.3
-    depends_on:
-      - jss
-    links:
-      - logshipper:logshipper
-    volumes:
-      - "./etc/filebeat.yml:/filebeat.yml"
-      - log-data:/Library/JSS/Logs
-
 volumes:
   db-data:
     driver: local

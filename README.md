@@ -25,8 +25,8 @@ There are several docker-compose files in the repository available to showcase a
 
 - `docker-compose.yml`: A basic JSS MySQL setup, adopted from Nick McSpadden's original idea.
 - `docker-compose-logging.yml`: An extreme ELK example which forgoes all file based logging.
-- `docker-compose-cluster.yml`: Master-Slave cluster example
-- `docker-compose-kitchensink.yml`: Absolutely every possible facet of 3rd party integration
+- `docker-compose-cluster.yml`: Master-Slave cluster example with HAProxy front end load balancing.
+- `docker-compose-kitchensink.yml`: Absolutely every possible facet of 3rd party integration I could cram in.
 
 Confd Variables
 ---------------
