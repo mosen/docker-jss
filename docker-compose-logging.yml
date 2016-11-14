@@ -31,6 +31,7 @@ services:
       - JSS_DB_NAME=jamfsoftware
       - JSS_DB_USERNAME=jamfsoftware
       - JSS_DB_PASSWORD=jamfsw03
+      - JSS_LOG4J_ENABLED=1
       - JSS_LOG4J_HOST=logshipper
       - JSS_LOG4J_PORT=4560
 
@@ -56,16 +57,6 @@ services:
       - 5044
       - 4560
     command: "logstash -f /config-dir/logstash.conf"
-
-  logreader:
-    image: prima/filebeat:1.2.3
-    depends_on:
-      - jss
-    links:
-      - logshipper:logshipper
-    volumes:
-      - "./etc/filebeat.yml:/filebeat.yml"
-      - log-data:/Library/JSS/Logs
 
 volumes:
   db-data:
