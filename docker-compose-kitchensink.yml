@@ -80,6 +80,23 @@ services:
       - JSS_USER=admin
       - JSS_PASSWORD=password
 
+  samba:
+    image: dperson/samba:latest
+    ports:
+      - "7139:139"
+      - "7445:445"
+    volumes:
+      - "./distribution_point:/distribution_point"
+    command:
+      - "-u"
+      - "jss;jss"
+      - "-s"
+      - "distribution_point;/distribution_point;yes;no;yes;all;jss"
+      - "-p"
+    environment:
+      - TZ=UTC
+
+
 volumes:
   db-data:
     driver: local

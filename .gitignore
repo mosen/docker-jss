@@ -5,3 +5,4 @@ JSSDatabaseUtil.jar
 
 *.iml
 confd
+distribution_point/*
