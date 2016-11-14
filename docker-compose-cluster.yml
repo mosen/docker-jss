@@ -3,7 +3,7 @@ services:
   mysql:
     image: mysql
     volumes:
-      - db-data:/var/lib/mysql
+      - cluster-db-data:/var/lib/mysql
     ports:
       - "13306:3306"
     environment:
@@ -12,15 +12,14 @@ services:
       - MYSQL_PASSWORD=jamfsw03
       - MYSQL_DATABASE=jamfsoftware
 
-  jss:
+  master-jss:
     build: .
-    volumes:
-      - log-data:/Library/JSS/Logs
     ports:
       - "8444:8443"
       - "9080:8080"
     links:
       - mysql:db
+      - logshipper
     depends_on:
       - mysql
     environment:
@@ -29,6 +28,8 @@ services:
       - JSS_DB_NAME=jamfsoftware
       - JSS_DB_USERNAME=jamfsoftware
       - JSS_DB_PASSWORD=jamfsw03
+      - JSS_LOG4J_HOST=logshipper
+      - JSS_LOG4J_PORT=4560
 
   slave-jss:
     build: .
@@ -37,6 +38,7 @@ services:
       - "9081:8080"
     links:
       - mysql:db
+      - logshipper
     depends_on:
       - mysql
     environment:
@@ -45,9 +47,44 @@ services:
       - JSS_DB_NAME=jamfsoftware
       - JSS_DB_USERNAME=jamfsoftware
       - JSS_DB_PASSWORD=jamfsw03
-      
+      - JSS_LOG4J_HOST=logshipper
+      - JSS_LOG4J_PORT=4560
+
+  proxy:
+    image: haproxy:1.6
+    volumes:
+      - "./etc/haproxy.cfg:/usr/local/etc/haproxy/haproxy.cfg:ro"
+    links:
+      - "master-jss"
+      - "slave-jss"
+    ports:
+      - "10080:80"
+
+  elasticsearch:
+    image: elasticsearch
+
+  kibana:
+    image: kibana:latest
+    ports:
+      - "5601:5601"
+    links:
+      - elasticsearch:elasticsearch
+
+  logshipper:
+    image: logstash:2.3.4
+    depends_on:
+      - elasticsearch
+    links:
+      - elasticsearch:elasticsearch
+    volumes:
+      - "./etc/logstash.conf:/config-dir/logstash.conf"
+    ports:
+      - 5044
+      - 4560
+    command: "logstash -f /config-dir/logstash.conf"
+
 volumes:
-  db-data:
+  cluster-db-data:
     driver: local
 
 
