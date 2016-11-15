@@ -18,6 +18,4 @@ fi
 
 /usr/bin/confd -onetime -backend ${CONFD_BACKEND}
 
-
-
 catalina.sh run

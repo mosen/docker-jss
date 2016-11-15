@@ -13,7 +13,9 @@ services:
       - MYSQL_DATABASE=jamfsoftware
 
   jss:
-    build: .
+    build:
+      context: .
+      dockerfile: Dockerfile.tomcat85.jre8
     volumes:
       - log-data:/Library/JSS/Logs
     ports:

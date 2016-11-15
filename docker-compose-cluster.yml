@@ -13,7 +13,9 @@ services:
       - MYSQL_DATABASE=jamfsoftware
 
   master-jss:
-    build: .
+    build:
+      context: .
+      dockerfile: Dockerfile.tomcat85.jre8
     ports:
       - "8444:8443"
       - "9080:8080"
@@ -32,7 +34,9 @@ services:
       - JSS_LOG4J_PORT=4560
 
   slave-jss:
-    build: .
+    build:
+      context: .
+      dockerfile: Dockerfile.tomcat85.jre8
     ports:
       - "8446:8443"
       - "9081:8080"

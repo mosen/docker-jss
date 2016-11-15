@@ -1,0 +1,7 @@
+[template]
+prefix = "/jss"
+src = "context.xml.tmpl"
+dest = "/usr/local/tomcat/conf/context.xml"
+keys = []
+check_cmd = "catalina.sh configtest"
+# reload_cmd = "catalina.sh stop && catalina.sh start"

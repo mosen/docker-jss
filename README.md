@@ -12,7 +12,8 @@ How To Use The Container:
 -----
 1.	You need to obtain these things on your own, due to EULA agreements.  This is why I cannot distribute this as a Docker image:
 	1.	The JSS Manual Installer.  This can be found in your [JamfNation software assets](https://jamfnation.jamfsoftware.com/login.html) section, under "Alternate Downloads."  Unzip the manual installer and place the "ROOT.war" file in the same directory as the Dockerfile.
-	2.	[JCE Unlimited Encryption](http://www.oracle.com/technetwork/java/javase/downloads/jce-7-download-432124.html) files.  Unzip these and place the "US_export_policy.jar" and "local_policy.jar" in the same directory as the Dockerfile.
+	2.	[JCE Unlimited Encryption for JRE7](http://www.oracle.com/technetwork/java/javase/downloads/jce-7-download-432124.html) files.  Unzip these and place the "US_export_policy.jar" and "local_policy.jar" in the same directory as the Dockerfile.
+        or [JCE Unlimited Encryption for JRE8](http://www.oracle.com/technetwork/java/javase/downloads/jce8-download-2133166.html)
 
 2.  To run the JSS and MySQL containers via `docker-compose`, you can simply run `docker-compose up` in this directory. If you have a different system for orchestrating your containers you can use that.
 3.	Open a web browser on the Docker host and navigate to https://localhost:8443/.
@@ -24,7 +25,7 @@ docker-compose options
 There are several docker-compose files in the repository available to showcase a few different scenarios:
 
 - `docker-compose.yml`: A basic JSS MySQL setup, adopted from Nick McSpadden's original idea.
-- `docker-compose-logging.yml`: An extreme ELK example which forgoes all file based logging.
+- `docker-compose-logging.yml`: An ELK log shipping example which forgoes all file based logging.
 - `docker-compose-cluster.yml`: Master-Slave cluster example with HAProxy front end load balancing.
 - `docker-compose-kitchensink.yml`: Absolutely every possible facet of 3rd party integration I could cram in.
 

@@ -16,7 +16,9 @@ services:
     image: memcached
 
   jss:
-    build: .
+    build:
+      context: .
+      dockerfile: Dockerfile.tomcat85.jre8
     volumes:
       - log-data:/Library/JSS/Logs
     ports:
