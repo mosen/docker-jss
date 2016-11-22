@@ -17,6 +17,7 @@ RUN mkdir -p /Library/JSS/Logs
 # confd stuff
 ADD ./conf.d /etc/confd/conf.d
 ADD ./templates /etc/confd/templates
+ADD ./templates/tomcat_8.0/server.xml.tmpl /etc/confd/templates/server.xml.tmpl
 
 ENV CONFD_VERSION 0.11.0
 RUN curl -LOks https://github.com/kelseyhightower/confd/releases/download/v${CONFD_VERSION}/confd-${CONFD_VERSION}-linux-amd64 && \
