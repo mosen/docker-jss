@@ -15,7 +15,7 @@ services:
   jss:
     build:
       context: .
-      dockerfile: Dockerfile.tomcat85.jre8
+      dockerfile: Dockerfile.tomcat80.jre8
     volumes:
       - log-data:/Library/JSS/Logs
     ports:
@@ -44,6 +44,8 @@ services:
     image: kibana:latest
     ports:
       - "5601:5601"
+    volumes:
+      - "./etc/kibana.yml:/etc/kibana/kibana.yml:ro"
     links:
       - elasticsearch:elasticsearch
 

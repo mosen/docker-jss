@@ -15,7 +15,7 @@ services:
   master-jss:
     build:
       context: .
-      dockerfile: Dockerfile.tomcat85.jre8
+      dockerfile: Dockerfile.tomcat80.jre8
     ports:
       - "8444:8443"
       - "9080:8080"
@@ -36,7 +36,7 @@ services:
   slave-jss:
     build:
       context: .
-      dockerfile: Dockerfile.tomcat85.jre8
+      dockerfile: Dockerfile.tomcat80.jre8
     ports:
       - "8446:8443"
       - "9081:8080"

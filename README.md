@@ -19,15 +19,39 @@ How To Use The Container:
 3.	Open a web browser on the Docker host and navigate to https://localhost:8443/.
 4.	Accept the license agreement, enter in your activation code, set up your accounts and URLs, and you're good to go.
 
-docker-compose options
-----------------------
+docker-compose files
+--------------------
 
-There are several docker-compose files in the repository available to showcase a few different scenarios:
+There are several docker-compose files in the repository available other
+than the default to test out different configuration scenarios:
 
-- `docker-compose.yml`: A basic JSS MySQL setup, adopted from Nick McSpadden's original idea.
-- `docker-compose-logging.yml`: An ELK log shipping example which forgoes all file based logging.
-- `docker-compose-cluster.yml`: Master-Slave cluster example with HAProxy front end load balancing.
-- `docker-compose-kitchensink.yml`: Absolutely every possible facet of 3rd party integration I could cram in.
+## (Default) `docker-compose.yml` ##
+ 
+A basic JSS MySQL setup, adopted from Nick McSpadden's original idea.
+
+I've added confd to generate the database configuration on startup instead of using the UI to type that in.
+
+## `docker-compose-logging.yml` ##
+
+This compose file extends the default by adding the ELK stack.
+
+It showcases how to use the log4j socket appender for JSS logs.
+You can connect to the kibana instance at http://localhost:5601.
+The default index pattern of `logstash-*` has been used.
+
+## `docker-compose-cluster.yml` ## 
+
+This compose file extends the logging setup by adding a second JSS as a slave,
+and a HAProxy load balancer. 
+
+The master/slave cluster configuration is not handled for you.
+
+
+## `docker-compose-kitchensink.yml` ##
+
+This compose file is used to add all of the previous features and
+incorporate even more containers. It is presently a dumping ground for
+all kinds of integration.
 
 Confd Variables
 ---------------
