@@ -10,7 +10,7 @@ KEYSTORE_PATH=/usr/local/tomcat/conf/.keystore
 
 if [ $SELF_SIGNED -eq 1 ]; then
 	/usr/bin/keytool -genkeypair -alias tomcat -keyalg RSA -keypass changeit -storepass changeit \
-		-dname "CN=jss.example.com, OU=Mobile Device Management, O=Company, L=Location, ST=State, C=Country" -keystore ${KEYSTORE_PATH} -validity 365
+		-dname "CN=localhost, OU=Mobile Device Management, O=Company, L=Location, ST=State, C=Country" -keystore ${KEYSTORE_PATH} -validity 365
 else
 	/usr/bin/keytool -import -alias root -keystore ${KEYSTORE_PATH} -trustcacerts -file ${CA_CERT}
 	/usr/bin/keytool -import -alias tomcat -keystore ${KEYSTORE_PATH} -file ${TLS_CERT}

@@ -3,7 +3,7 @@
 memcached.endpoints[{{base .Key}}]={{.Value}}
 {{end}}
 
-memcached.timeToLiveSeconds={{getv "/memcached/ttl" "120"}}
+memcached.timeToLiveSeconds={{getv "/memcached/ttl"}}
 
 {{if exists "/memcached/uniqueid"}}
 memcached.uniqueId={{getv "/memcached/uniqueid"}}

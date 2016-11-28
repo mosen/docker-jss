@@ -47,13 +47,13 @@
                protocol="org.apache.coyote.http11.Http11NioProtocol"
                maxThreads="150"
                scheme="https"
+               secure="true"
                SSLEnabled="true"
+               keystoreFile="/usr/local/tomcat/conf/.keystore"
+               keystorePass="changeit"
+               clientAuth="false"
+               sslProtocol="TLS"
                >
-        <SSLHostConfig>
-            <Certificate certificateKeystoreFile="/usr/local/tomcat/conf/.keystore"
-                         certificateKeystorePassword="changeit"
-                         type="RSA" />
-        </SSLHostConfig>
     </Connector>
     <!-- Define a SSL/TLS HTTP/1.1 Connector on port 8443 with HTTP/2
          This connector uses the APR/native implementation. When using the
