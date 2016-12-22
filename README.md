@@ -16,8 +16,9 @@ How To Use The Container:
         or [JCE Unlimited Encryption for JRE8](http://www.oracle.com/technetwork/java/javase/downloads/jce8-download-2133166.html)
 
 2.  To run the JSS and MySQL containers via `docker-compose`, you can simply run `docker-compose up` in this directory. If you have a different system for orchestrating your containers you can use that.
-3.	Open a web browser on the Docker host and navigate to https://localhost:8443/.
+3.	Open a web browser on the Docker host and navigate to https://localhost:8444/.
 4.	Accept the license agreement, enter in your activation code, set up your accounts and URLs, and you're good to go.
+5.  The MySQL Instance is available at `localhost:13306`
 
 docker-compose files
 --------------------
