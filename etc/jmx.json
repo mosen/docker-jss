@@ -1,0 +1,64 @@
+{
+  "host": "jss",
+  "port": 1335,
+  "username": "",
+  "password": "",
+  "queries": [
+    {
+      "object_name": "com.jamfsoftware.jss.knobs.management.KnobsMBean:type=JssCustomSettingMBean"
+    },
+    {
+      "object_name": "com.jamfsoftware.jss.managementextensions.ClusterThreadLastRunTimeMBean:type=LastClusterRunTimeMBean"
+    },
+    {
+      "object_name": "com.jamfsoftware.jss.managementextensions.ComputerCheckinCountMBean:type=CounterMBean"
+    },
+    {
+      "object_name": "com.jamfsoftware.jss.managementextensions.DeployableObjectDataCacheMBean:type=CacheMBean"
+    },
+    {
+      "object_name": "com.jamfsoftware.jss.managementextensions.EventLogCounterMBean:type=CounterMBean"
+    },
+    {
+      "object_name": "com.jamfsoftware.jss.managementextensions.EventLogDropCounterMBean:type=CounterMBean"
+    },
+    {
+      "object_name": "com.jamfsoftware.jss.managementextensions.EventLogQueueSizeMBean:type=QueueSizeMBean"
+    },
+    {
+      "object_name": "com.jamfsoftware.jss.managementextensions.GeneralThreadPoolMBean:type=ThreadPoolMBean"
+    },
+    {
+      "object_name": "com.jamfsoftware.jss.managementextensions.LdapConnectionsInUseMBean:type=CounterMBean"
+    },
+    {
+      "object_name": "com.jamfsoftware.jss.managementextensions.LdapConnectionsPoolMBean:type=ConnectionsPoolMBean"
+    },
+    {
+      "object_name": "com.jamfsoftware.jss.managementextensions.MDMCheckinCountMBean:type=CounterMBean"
+    },
+    {
+      "object_name": "com.jamfsoftware.jss.managementextensions.PhantomReferenceQueueMBean:type=QueueMBean"
+    },
+    {
+      "object_name": "com.jamfsoftware.jss.managementextensions.PushNotificationCountMBean:type=CounterMBean"
+    },
+    {
+      "object_name": "com.jamfsoftware.jss.managementextensions.PushQueueSizeMBean:type=QueueSizeMBean"
+    },
+    {
+      "object_name": "com.jamfsoftware.jss.managementextensions.RestAPIOperationCountMBean:type=CounterMBean"
+    },
+    {
+      "object_name": "com.jamfsoftware.jss.managementextensions.ScheduledThreadPoolMBean:type=ThreadPoolMBean"
+    },
+    {
+      "object_name": "com.jamfsoftware.jss.managementextensions.VppSendInvitationQueueMBean:type=QueueSizeMBean"
+    }
+  ]
+}
+
+
+
+
+

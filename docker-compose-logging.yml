@@ -57,6 +57,7 @@ services:
       - elasticsearch:elasticsearch
     volumes:
       - "./etc/logstash.conf:/config-dir/logstash.conf"
+      - "./etc/jmx.json:/config-dir/jmx.json"
     ports:
       - 5044
       - 4560
