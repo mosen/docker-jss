@@ -33,7 +33,10 @@ RUN curl -LOks https://github.com/coreos/etcd/releases/download/v${ETCD_VERSION}
     cp etcd-v${ETCD_VERSION}-linux-amd64/etcdctl /etcdctl && \
     rm -rf etcd-v* && \
     chmod +x /etcdctl
-    
+
+# performance tuning and JMX
+#
+#ADD ./etc/setenv.sh /usr/local/tomcat/bin/setenv.sh
 
 ADD jss.sh /usr/bin/jss.sh
 RUN chmod +x /usr/bin/jss.sh
