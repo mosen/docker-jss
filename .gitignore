@@ -3,6 +3,8 @@ US_export_policy.jar
 local_policy.jar
 JSSDatabaseUtil.jar
 
+.DS_Store
+.idea
 *.iml
 confd
 distribution_point/*
