@@ -40,6 +40,8 @@ It showcases how to use the log4j socket appender for JSS logs.
 You can connect to the kibana instance at http://localhost:5601.
 The default index pattern of `logstash-*` has been used.
 
+*NOTE*: Absolutely stupidly verbose level of logging.
+
 ## `docker-compose-cluster.yml` ## 
 
 This compose file extends the logging setup by adding a second JSS as a slave,

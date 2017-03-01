@@ -59,13 +59,16 @@ services:
       - elasticsearch:elasticsearch
 
   logshipper:
-    image: logstash:2.3.4
+    build:
+      dockerfile: Dockerfile.logstash-jmx
+      context: .
     depends_on:
       - elasticsearch
     links:
       - elasticsearch:elasticsearch
     volumes:
       - "./etc/logstash.conf:/config-dir/logstash.conf"
+      - "./etc/jmx.json:/config-dir/jmx.json"
     ports:
       - 5044
       - 4560

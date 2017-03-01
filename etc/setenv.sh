@@ -79,10 +79,13 @@ export CATALINA_OPTS="$CATALINA_OPTS -server"
 export CATALINA_OPTS="$CATALINA_OPTS -XX:+DisableExplicitGC"
 
 # Enable JMX
+HOST=$(hostname -i)
+
 export CATALINA_OPTS="$CATALINA_OPTS -Dcom.sun.management.jmxremote \
   -Dcom.sun.management.jmxremote.port=1335 \
   -Dcom.sun.management.jmxremote.ssl=false \
-  -Dcom.sun.management.jmxremote.authenticate=false"
+  -Dcom.sun.management.jmxremote.authenticate=false \
+  -Djava.rmi.server.hostname=${HOST}"
 
 
 # Check for application specific parameters at startup

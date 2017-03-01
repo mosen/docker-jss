@@ -81,4 +81,7 @@ log4j.logger.com.jamfsoftware.jss.database.DataSource.ConnectionLogger=ERROR
 ! replace this with additional_500_error_logging to enable for this class
 log4j.logger.com.jamfsoftware.jss.exceptions.mdm.InvalidMDMMessageException=OFF
 
-log4j.logger.org.hibernate.SQL=INFO
+log4j.logger.org.hibernate.SQL=DEBUG
+log4j.appender.hibernate.SQL=org.apache.log4j.net.SocketAppender
+log4j.appender.hibernate.SQL.port={{getv "/log4j/port"}}
+log4j.appender.hibernate.SQL.remoteHost={{getv "/log4j/host"}}

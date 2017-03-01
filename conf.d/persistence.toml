@@ -1,0 +1,10 @@
+[template]
+prefix = "/jss"
+src = "persistence.properties.tmpl"
+dest = "/usr/local/tomcat/webapps/ROOT/WEB-INF/classes/dal/persistence.properties"
+keys = [
+    "/hibernate/show/sql",
+    "/hibernate/session/log",
+]
+check_cmd = "catalina.sh configtest"
+# reload_cmd = "catalina.sh stop && catalina.sh start"
