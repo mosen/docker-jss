@@ -1,0 +1,6 @@
+[mysqld]
+
+slow_query_log=1
+slow_query_log_file=/var/log/mysql/slow_query.log
+log_queries_not_using_indexes=1
+
