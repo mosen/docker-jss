@@ -75,7 +75,7 @@ services:
       - elasticsearch:elasticsearch
 
   logshipper:
-    image: logstash:2.3.4
+    image: logstash:5
     depends_on:
       - elasticsearch
     links:

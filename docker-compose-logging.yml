@@ -4,6 +4,7 @@ services:
     image: mysql
     volumes:
       - db-data:/var/lib/mysql
+      - "./etc/mysql.d:/etc/mysql/conf.d:ro"
     ports:
       - "13306:3306"
     environment:
@@ -21,12 +22,10 @@ services:
     ports:
       - "8444:8443"
       - "9080:8080"
+      - "1335:1335"  # JMX
     links:
       - mysql:db
-      - logshipper:logshipper
-    depends_on:
-      - mysql
-      - logshipper
+      # - logshipper:logshipper
     environment:
       - JSS_DB_HOST=db
       - JSS_DB_PORT=3306
@@ -36,6 +35,9 @@ services:
       - JSS_LOG4J_ENABLED=1
       - JSS_LOG4J_HOST=logshipper
       - JSS_LOG4J_PORT=4560
+      - JSS_HIBERNATE_SESSION_LOG=true
+      - JSS_HIBERNATE_SHOW_SQL=true
+      
 
   elasticsearch:
     image: elasticsearch
@@ -50,14 +52,17 @@ services:
       - elasticsearch:elasticsearch
 
   logshipper:
-    image: logstash:2.3.4
+    build:
+      dockerfile: Dockerfile.logstash-jmx
+      context: .
     depends_on:
       - elasticsearch
     links:
       - elasticsearch:elasticsearch
+      - jss:jss
     volumes:
       - "./etc/logstash.conf:/config-dir/logstash.conf"
-      - "./etc/jmx.json:/config-dir/jmx.json"
+      - "./etc/jmx.json:/config-dir/jmx/jmx.json"
     ports:
       - 5044
       - 4560
