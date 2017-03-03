@@ -80,7 +80,7 @@ export CATALINA_OPTS="$CATALINA_OPTS -XX:+DisableExplicitGC"
 
 # Enable JMX
 export CATALINA_OPTS="$CATALINA_OPTS -Dcom.sun.management.jmxremote \
-  -Dcom.sun.management.jmxremote.port=1335 \
+  -Dcom.sun.management.jmxremote.port=9000 \
   -Dcom.sun.management.jmxremote.ssl=false \
   -Dcom.sun.management.jmxremote.authenticate=false"
 

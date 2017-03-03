@@ -1,0 +1,29 @@
+FROM tomcat:8.0-jre8
+
+MAINTAINER Mosen <mosen@users.noreply.github.com>
+
+RUN rm -rf /usr/local/tomcat/webapps/*
+ADD ROOT.war /usr/local/tomcat/webapps/ROOT.war
+WORKDIR /usr/local/tomcat/webapps
+RUN /usr/bin/unzip /usr/local/tomcat/webapps/ROOT.war -d /usr/local/tomcat/webapps/ROOT
+RUN rm /usr/local/tomcat/webapps/ROOT.war
+
+RUN rm /usr/lib/jvm/java-8-openjdk-amd64/jre/lib/security/US_export_policy.jar
+RUN rm /usr/lib/jvm/java-8-openjdk-amd64/jre/lib/security/local_policy.jar
+ADD US_export_policy.jar /usr/lib/jvm/java-8-openjdk-amd64/jre/lib/security/US_export_policy.jar
+ADD local_policy.jar /usr/lib/jvm/java-8-openjdk-amd64/jre/lib/security/local_policy.jar
+RUN mkdir -p /Library/JSS/Logs
+
+# APR/OpenSSL connector
+# ADD ./templates/tomcat_8.0/server.apr.xml /usr/local/tomcat/conf/server.xml
+ADD ./conf/tomcat_8.0/logging.properties /usr/local/tomcat/conf/logging.properties
+ADD ./conf/tomcat_8.0/catalina.properties /usr/local/tomcat/conf/catalina.properties
+
+
+ADD ./conf/jss/DataBase.xml /usr/local/tomcat/webapps/ROOT/WEB-INF/xml/DataBase.xml
+
+# performance tuning and JMX
+ADD ./etc/setenv.sh /usr/local/tomcat/bin/setenv.sh
+
+EXPOSE 8443
+EXPOSE 9000
