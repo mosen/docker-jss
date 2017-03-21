@@ -15,7 +15,7 @@ ADD local_policy.jar /usr/lib/jvm/java-8-openjdk-amd64/jre/lib/security/local_po
 RUN mkdir -p /Library/JSS/Logs
 
 # APR/OpenSSL connector
-# ADD ./templates/tomcat_8.0/server.apr.xml /usr/local/tomcat/conf/server.xml
+ADD ./conf/tomcat_8.0/server.jsse.xml /usr/local/tomcat/conf/server.xml
 ADD ./conf/tomcat_8.0/logging.properties /usr/local/tomcat/conf/logging.properties
 ADD ./conf/tomcat_8.0/catalina.properties /usr/local/tomcat/conf/catalina.properties
 
@@ -25,5 +25,10 @@ ADD ./conf/jss/DataBase.xml /usr/local/tomcat/webapps/ROOT/WEB-INF/xml/DataBase.
 # performance tuning and JMX
 ADD ./etc/setenv.sh /usr/local/tomcat/bin/setenv.sh
 
+ADD ./jss_noconfd.sh /usr/bin/jss.sh
+RUN chmod +x /usr/bin/jss.sh
+
 EXPOSE 8443
 EXPOSE 9000
+
+CMD ["jss.sh"]
