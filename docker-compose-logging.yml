@@ -22,7 +22,7 @@ services:
     ports:
       - "8444:8443"
       - "9080:8080"
-      - "1335:1335"  # JMX
+      - "9000:9000"  # JMX
     links:
       - mysql:db
       # - logshipper:logshipper
