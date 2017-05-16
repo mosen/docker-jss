@@ -1,12 +1,15 @@
 version: '2'
 services:  
-  mysql:
+  db:
     image: mysql
     volumes:
       - db-data:/var/lib/mysql
       - "./etc/mysql.d:/etc/mysql/conf.d:ro"
     ports:
       - "13306:3306"
+    networks:
+      - jss
+      - default
     environment:
       - MYSQL_ROOT_PASSWORD=mysecretpassword
       - MYSQL_USER=jamfsoftware
@@ -22,10 +25,10 @@ services:
     ports:
       - "8444:8443"
       - "9080:8080"
-      - "9000:9000"  # JMX
-    links:
-      - mysql:db
-      # - logshipper:logshipper
+      - "8999:8999"  # JMX eg jconsole hostName:portNum
+    networks:
+      - jss
+      - default
     environment:
       - JSS_DB_HOST=db
       - JSS_DB_PORT=3306
@@ -40,26 +43,29 @@ services:
       
 
   elasticsearch:
-    image: elasticsearch
+    image: docker.elastic.co/elasticsearch/elasticsearch:5.4.0
+    volumes:
+      - "elasticsearch-data:/usr/share/elasticsearch/data"
+    networks:
+      - jss
+      - default
 
   kibana:
-    image: kibana:latest
+    image: docker.elastic.co/kibana/kibana:5.4.0
     ports:
       - "5601:5601"
+    networks:
+      - jss
+      - default
     volumes:
       - "./etc/kibana.yml:/etc/kibana/kibana.yml:ro"
-    links:
-      - elasticsearch:elasticsearch
 
   logshipper:
     build:
       dockerfile: Dockerfile.logstash-jmx
       context: .
-    depends_on:
-      - elasticsearch
-    links:
-      - elasticsearch:elasticsearch
-      - jss:jss
+    networks:
+      - jss
     volumes:
       - "./etc/logstash.conf:/config-dir/logstash.conf"
       - "./etc/jmx.json:/config-dir/jmx/jmx.json"
@@ -73,6 +79,11 @@ volumes:
     driver: local
   log-data:
     driver: local
+  elasticsearch-data:
+    driver: local
+
+networks:
+  jss:
 
 
   

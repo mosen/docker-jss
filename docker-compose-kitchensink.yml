@@ -47,10 +47,10 @@ services:
       - JSS_LOG4J_PORT=4560
 
   elasticsearch:
-    image: elasticsearch
+    image: docker.elastic.co/elasticsearch/elasticsearch:5.4.0
 
   kibana:
-    image: kibana:latest
+    image: docker.elastic.co/kibana/kibana:5.4.0
     ports:
       - "5601:5601"
     volumes:

@@ -82,10 +82,9 @@ export CATALINA_OPTS="$CATALINA_OPTS -XX:+DisableExplicitGC"
 HOST=$(hostname)
 
 export CATALINA_OPTS="$CATALINA_OPTS -Dcom.sun.management.jmxremote \
-  -Dcom.sun.management.jmxremote.port=9000 \
+  -Dcom.sun.management.jmxremote.port=8999 \
   -Dcom.sun.management.jmxremote.ssl=false \
   -Dcom.sun.management.jmxremote.authenticate=false \
-  -Dcom.sun.management.jmxremote.rmi.port=9001 \
   -Djava.rmi.server.hostname=${HOST}"
 
 
