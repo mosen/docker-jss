@@ -1,3 +1,3 @@
-FROM logstash:5
+FROM docker.elastic.co/logstash/logstash:5.4.1
 RUN logstash-plugin install logstash-input-jmx
 RUN mkdir -p /config-dir/jmx

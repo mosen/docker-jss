@@ -4,7 +4,7 @@ services:
     image: mysql
     volumes:
       - db-data:/var/lib/mysql
-      - "./etc/mysql.d:/etc/mysql/conf.d:ro"
+#      - "./etc/mysql.d:/etc/mysql/conf.d:ro"
     ports:
       - "13306:3306"
     networks:
@@ -43,17 +43,22 @@ services:
       
 
   elasticsearch:
-    image: docker.elastic.co/elasticsearch/elasticsearch:5.4.0
+    image: docker.elastic.co/elasticsearch/elasticsearch:5.4.1
     volumes:
       - "elasticsearch-data:/usr/share/elasticsearch/data"
+    environment:
+      - http.host=0.0.0.0
+      - transport.host=127.0.0.1
+    ports:
+      - 9200:9200
     networks:
       - jss
       - default
 
   kibana:
-    image: docker.elastic.co/kibana/kibana:5.4.0
+    image: docker.elastic.co/kibana/kibana:5.4.1
     ports:
-      - "5601:5601"
+      - 5601:5601
     networks:
       - jss
       - default

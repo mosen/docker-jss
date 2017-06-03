@@ -12,6 +12,11 @@ services:
       - MYSQL_PASSWORD=jamfsw03
       - MYSQL_DATABASE=jamfsoftware
 
+  memcached:
+    image: memcached
+    networks:
+      - jss
+
   jss:
     build:
       context: .
@@ -31,6 +36,9 @@ services:
       - JSS_DB_NAME=jamfsoftware
       - JSS_DB_USERNAME=jamfsoftware
       - JSS_DB_PASSWORD=jamfsw03
+    networks:
+      - jss
+      - default
 
   samba:
     image: dperson/samba:latest
@@ -52,3 +60,6 @@ services:
 volumes:
   db-data:
     driver: local
+
+networks:
+  jss:

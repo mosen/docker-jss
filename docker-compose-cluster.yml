@@ -65,14 +65,27 @@ services:
       - "10080:80"
 
   elasticsearch:
-    image: elasticsearch
+    image: docker.elastic.co/elasticsearch/elasticsearch:5.4.1
+    volumes:
+      - "elasticsearch-data:/usr/share/elasticsearch/data"
+    environment:
+      - http.host=0.0.0.0
+      - transport.host=127.0.0.1
+    ports:
+      - 9200:9200
+    networks:
+      - jss
+      - default
 
   kibana:
-    image: kibana:latest
+    image: docker.elastic.co/kibana/kibana:5.4.1
     ports:
-      - "5601:5601"
-    links:
-      - elasticsearch:elasticsearch
+      - 5601:5601
+    networks:
+      - jss
+      - default
+    volumes:
+      - "./etc/kibana.yml:/etc/kibana/kibana.yml:ro"
 
   logshipper:
     image: logstash:5
@@ -91,5 +104,7 @@ volumes:
   cluster-db-data:
     driver: local
 
+networks:
+  jss:
 
   
