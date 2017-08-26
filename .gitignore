@@ -2,6 +2,7 @@ ROOT.war
 US_export_policy.jar
 local_policy.jar
 JSSDatabaseUtil.jar
+JSSDBUtilityConfig.xml
 
 .DS_Store
 .idea
