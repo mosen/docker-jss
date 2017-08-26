@@ -66,9 +66,7 @@ services:
       - "./etc/kibana.yml:/etc/kibana/kibana.yml:ro"
 
   logshipper:
-    build:
-      dockerfile: Dockerfile.logstash-jmx
-      context: .
+    image: docker.elastic.co/logstash/logstash:5.4.1
     networks:
       - jss
     volumes:
