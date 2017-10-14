@@ -36,6 +36,11 @@ services:
       - JSS_DB_NAME=jamfsoftware
       - JSS_DB_USERNAME=jamfsoftware
       - JSS_DB_PASSWORD=jamfsw03
+#      - PKCS12_PASS=changeit
+#      - PKCS12_SRCALIAS=localhost
+#      - SELF_SIGNED=0
+#    volumes:
+#      - "./server.p12:/server.p12:ro"
     networks:
       - jss
       - default
