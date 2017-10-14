@@ -31,17 +31,20 @@ else
 	if [ -f "$PKCS12_PATH" ]; then
 	    echo "Importing PKCS#12 Keystore..."
         ${KEYTOOL} \
-                -importkeystore \
-                -deststoretype JKS \
-                -deststorepass "${JKS_PASS}" \
-                -destkeypass "${JKS_PASS}" \
-                -destkeystore ${KEYSTORE_PATH} \
-                -srckeystore /server.p12 \
-                -srcstoretype PKCS12 \
-                -srcstorepass "${PKCS12_PASS}" \
-                -srcalias "${PKCS12_SRCALIAS}" \
-                -destalias tomcat
+            -importkeystore \
+            -srckeystore /server.p12 \
+            -destkeystore ${KEYSTORE_PATH} \
+            -srcstoretype PKCS12 -deststoretype JKS \
+            -srcstorepass "${PKCS12_PASS}" \
+            -srckeypass "${PKCS12_PASS}" \
+            -deststorepass "${JKS_PASS}" \
+            -destkeypass "${JKS_PASS}" \
+            -srcalias "${PKCS12_SRCALIAS}" \
+            -destalias tomcat
 
+        if [ $? != 0 ]; then
+            exit 1
+        fi
     else
         ${KEYTOOL} -import -alias tomcat -keystore ${KEYSTORE_PATH} -file ${TLS_CERT_PATH}
     fi
