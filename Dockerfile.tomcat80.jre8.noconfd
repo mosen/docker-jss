@@ -22,6 +22,10 @@ ADD ./conf/tomcat_8.0/server.jsse.xml /usr/local/tomcat/conf/server.xml
 
 ADD ./conf/jss/DataBase.xml /usr/local/tomcat/webapps/ROOT/WEB-INF/xml/DataBase.xml
 
+# performance tuning and JMX
+#
+ADD ./etc/setenv.sh /usr/local/tomcat/bin/setenv.sh
+
 ADD ./jss_noconfd.sh /usr/bin/jss.sh
 RUN chmod +x /usr/bin/jss.sh
 
