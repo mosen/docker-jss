@@ -33,8 +33,9 @@
 
 # discourage address map swapping by setting Xms and Xmx to the same value
 # http://confluence.atlassian.com/display/DOC/Garbage+Collector+Performance+Issues
-#export CATALINA_OPTS="$CATALINA_OPTS -Xms64m"
-#export CATALINA_OPTS="$CATALINA_OPTS -Xmx512m"
+# Values recommended by macmule
+export CATALINA_OPTS="$CATALINA_OPTS -Xms1024m"
+export CATALINA_OPTS="$CATALINA_OPTS -Xmx1024m"
 
 # Increase maximum perm size for web base applications to 4x the default amount
 # http://wiki.apache.org/tomcat/FAQ/Memoryhttp://wiki.apache.org/tomcat/FAQ/Memory
@@ -82,6 +83,7 @@ export CATALINA_OPTS="$CATALINA_OPTS -XX:+DisableExplicitGC"
 HOST=$(hostname)
 
 export CATALINA_OPTS="$CATALINA_OPTS -Dcom.sun.management.jmxremote \
+  -Djava.awt.headless=true \
   -Dcom.sun.management.jmxremote.port=8999 \
   -Dcom.sun.management.jmxremote.ssl=false \
   -Dcom.sun.management.jmxremote.authenticate=false \

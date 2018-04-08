@@ -13,8 +13,8 @@ RUN rm /usr/local/tomcat/webapps/ROOT.war
 # Latest tomcat 8.0 doesnt have these
 # RUN rm /usr/lib/jvm/java-8-openjdk-amd64/jre/lib/security/US_export_policy.jar
 # RUN rm /usr/lib/jvm/java-8-openjdk-amd64/jre/lib/security/local_policy.jar
-COPY US_export_policy.jar /usr/lib/jvm/java-8-openjdk-amd64/jre/lib/security/US_export_policy.jar
-COPY local_policy.jar /usr/lib/jvm/java-8-openjdk-amd64/jre/lib/security/local_policy.jar
+# COPY US_export_policy.jar /usr/lib/jvm/java-8-openjdk-amd64/jre/lib/security/US_export_policy.jar
+# COPY local_policy.jar /usr/lib/jvm/java-8-openjdk-amd64/jre/lib/security/local_policy.jar
 RUN mkdir -p /Library/JSS/Logs
 
 # APR/OpenSSL connector
