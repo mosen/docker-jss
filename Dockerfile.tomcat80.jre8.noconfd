@@ -10,21 +10,20 @@ WORKDIR /usr/local/tomcat/webapps
 RUN /usr/bin/unzip /usr/local/tomcat/webapps/ROOT.war -d /usr/local/tomcat/webapps/ROOT
 RUN rm /usr/local/tomcat/webapps/ROOT.war
 
-# Latest tomcat 8.0 doesnt have these
-# RUN rm /usr/lib/jvm/java-8-openjdk-amd64/jre/lib/security/US_export_policy.jar
-# RUN rm /usr/lib/jvm/java-8-openjdk-amd64/jre/lib/security/local_policy.jar
-# COPY US_export_policy.jar /usr/lib/jvm/java-8-openjdk-amd64/jre/lib/security/US_export_policy.jar
-# COPY local_policy.jar /usr/lib/jvm/java-8-openjdk-amd64/jre/lib/security/local_policy.jar
 RUN mkdir -p /Library/JSS/Logs
 
 # APR/OpenSSL connector
 ADD ./conf/tomcat_8.0/server.jsse.xml /usr/local/tomcat/conf/server.xml
 
+# Static Database Configuration
 ADD ./conf/jss/DataBase.xml /usr/local/tomcat/webapps/ROOT/WEB-INF/xml/DataBase.xml
 
 # performance tuning and JMX
 #
 ADD ./etc/setenv.sh /usr/local/tomcat/bin/setenv.sh
+
+# Write logs to console
+ADD ./conf/jss/log4j.properties /usr/local/tomcat/webapps/ROOT/WEB-INF/classes/log4j.properties
 
 ADD ./jss_noconfd.sh /usr/bin/jss.sh
 RUN chmod +x /usr/bin/jss.sh
