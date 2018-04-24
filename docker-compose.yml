@@ -1,7 +1,9 @@
-version: '2'
+version: '3.1'
+
 services:  
-  mysql:
-    image: mysql
+
+  db:
+    image: mariadb
     volumes:
       - db-data:/var/lib/mysql
     ports:
@@ -11,6 +13,9 @@ services:
       - MYSQL_USER=jamfsoftware
       - MYSQL_PASSWORD=jamfsw03
       - MYSQL_DATABASE=jamfsoftware
+    networks:
+      - jss
+      - default
 
   memcached:
     image: memcached
@@ -26,10 +31,9 @@ services:
       - "9080:8080"
       - "9000:9000"
       - "9001:9001"
-    links:
-      - mysql:db
     depends_on:
-      - mysql
+      - db
+      - memcached
     environment:
       - JSS_DB_HOST=db
       - JSS_DB_PORT=3306
