@@ -25,12 +25,10 @@ services:
   jss:
     build:
       context: .
-      dockerfile: Dockerfile.tomcat80.jre8.noconfd
+      dockerfile: Dockerfile.tomcat85.jre8.noconfd
     ports:
       - "8444:8443"
       - "9080:8080"
-      - "9000:9000"
-      - "9001:9001"
     depends_on:
       - db
       - memcached
@@ -49,21 +47,21 @@ services:
       - jss
       - default
 
-  samba:
-    image: dperson/samba:latest
-    ports:
-      - "7139:139"
-      - "7445:445"
-    volumes:
-      - "./distribution_point:/distribution_point"
-    command:
-      - "-u"
-      - "jss;jss"
-      - "-s"
-      - "distribution_point;/distribution_point;yes;no;yes;all;jss"
-      - "-p"
-    environment:
-      - TZ=UTC
+#  samba:
+#    image: dperson/samba:latest
+#    ports:
+#      - "7139:139"
+#      - "7445:445"
+#    volumes:
+#      - "./distribution_point:/distribution_point"
+#    command:
+#      - "-u"
+#      - "jss;jss"
+#      - "-s"
+#      - "distribution_point;/distribution_point;yes;no;yes;all;jss"
+#      - "-p"
+#    environment:
+#      - TZ=UTC
 
 
 volumes:

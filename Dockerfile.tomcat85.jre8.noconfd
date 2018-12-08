@@ -1,0 +1,33 @@
+FROM tomcat:8.5-jre8
+
+MAINTAINER Mosen <mosen@users.noreply.github.com>
+
+RUN rm -rf /usr/local/tomcat/webapps/*
+ADD ROOT.war /usr/local/tomcat/webapps/ROOT.war
+WORKDIR /usr/local/tomcat/webapps
+
+# Don't force tomcat to unpack the war, results in slightly faster startup.
+RUN /usr/bin/unzip /usr/local/tomcat/webapps/ROOT.war -d /usr/local/tomcat/webapps/ROOT
+RUN rm /usr/local/tomcat/webapps/ROOT.war
+
+RUN mkdir -p /Library/JSS/Logs
+
+# APR/OpenSSL connector
+ADD ./conf/tomcat_8.5/server.jsse.xml /usr/local/tomcat/conf/server.xml
+
+# Static Database Configuration
+ADD ./conf/jss/DataBase.xml /usr/local/tomcat/webapps/ROOT/WEB-INF/xml/DataBase.xml
+
+# performance tuning and JMX is enabled by setenv.sh which is sourced from "$CATALINA_HOME/bin/setenv.sh"
+# upstream container defines CATALINA_HOME as /usr/local/tomcat
+ADD ./etc/setenv.sh /usr/local/tomcat/bin/setenv.sh
+
+# Write logs to console
+ADD ./conf/jss/log4j.properties /usr/local/tomcat/webapps/ROOT/WEB-INF/classes/log4j.properties
+
+ADD ./jss_noconfd.sh /usr/bin/jss.sh
+RUN chmod +x /usr/bin/jss.sh
+
+EXPOSE 8443
+
+CMD ["jss.sh"]
