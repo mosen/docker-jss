@@ -5,6 +5,9 @@
     <Listener className="org.apache.catalina.core.JreMemoryLeakPreventionListener" />
     <Listener className="org.apache.catalina.mbeans.GlobalResourcesLifecycleListener" />
     <Listener className="org.apache.catalina.core.ThreadLocalLeakPreventionListener" />
+    <!-- This listener requires catalina-jmx-remote.jar to be placed in $CATALINA_HOME/lib. This jar may be found in the extras directory of the binary download area. -->
+    <Listener className="org.apache.catalina.mbeans.JmxRemoteLifecycleListener"
+              rmiRegistryPortPlatform="10001" rmiServerPortPlatform="10002" />
 
     <GlobalNamingResources>
         <Resource name="UserDatabase" auth="Container"

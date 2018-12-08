@@ -1,6 +1,5 @@
 version: '3.1'
-
-services:  
+services:
 
   db:
     image: mariadb
@@ -24,30 +23,25 @@ services:
 
   jss:
     build:
-      context: .
+      context: ..
       dockerfile: Dockerfile.tomcat85.jre8.noconfd
+    volumes:
+      - "./jamf_cloud:/usr/local/tomcat/webapps/ROOT/WEB-INF/jamf_cloud:ro"
+      - "./SystemProperties.xml:/usr/local/tomcat/webapps/ROOT/WEB-INF/xml/SystemProperties.xml:ro"
     ports:
-      - "8444:8443" # HTTPS
-      - "9080:8080" # HTTP
+      - "8444:8443"
+      - "9080:8080"
       - "10001:10001" # JMX
       - "10002:10002"
     depends_on:
       - db
       - memcached
     environment:
-      - JSS_DB_HOST=db
+      - JSS_DB_HOST=clouddb
       - JSS_DB_PORT=3306
       - JSS_DB_NAME=jamfsoftware
       - JSS_DB_USERNAME=jamfsoftware
       - JSS_DB_PASSWORD=jamfsw03
-#      - PKCS12_PASS=changeit
-#      - PKCS12_SRCALIAS=localhost
-#      - SELF_SIGNED=0
-#    volumes:
-#      - "./server.p12:/server.p12:ro"
-    networks:
-      - jss
-      - default
 
 volumes:
   db-data:

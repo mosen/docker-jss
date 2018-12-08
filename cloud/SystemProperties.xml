@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+
+<system_properties>
+
+	<!--  log4jdbc options
+	 		prefix specifies classes (and java line number) printed in log when a jdbc call is made
+   			modify log4j.properties to turn on/off log4jdbc functionality including logging and timing
+   			see http://code.google.com/p/log4jdbc/   for configuration options
+   			properties are read in InitializationFunctions
+    -->
+
+	<system_property>
+		<key>log4jdbc.debug.stack.prefix</key>
+		<value>com.jamfsoftware.jss.objects</value>
+	</system_property>
+	<system_property>
+		<key>log4jdbc.dump.sql.addsemicolon</key>
+		<value>true</value>
+	</system_property>
+
+	<system_property>
+		<key>eventlogs.queue_size</key>
+		<value>20000</value>
+	</system_property>
+	<system_property>
+		<key>configprofiles.listview.concurrentcallsallowed.mysql55</key>
+		<value>1</value>
+	</system_property>
+	<system_property>
+		<key>configprofiles.listview.concurrentcallsallowed.mysql56</key>
+		<value>3</value>
+	</system_property>
+
+	<!-- certificate renewal -->
+
+	<system_property>
+		<key>pki.renewal_monitor.delay</key>
+		<value>1</value>
+	</system_property>
+	<system_property>
+		<key>pki.renewal_monitor.period</key>
+		<value>6</value>
+	</system_property>
+	<system_property>
+		<key>pki.renewal_monitor.time_unit</key>
+		<value>HOURS</value>
+	</system_property>
+
+	<system_property>
+		<key>pki.renewal_monitor.auto_renew.period</key>
+		<value>30</value>
+	</system_property>
+	<system_property>
+		<key>pki.renewal_monitor.auto_renew.time_unit</key>
+		<value>DAYS</value>
+	</system_property>
+
+	<system_property>
+		<key>pki.renewal_monitor.notification.period</key>
+		<value>90</value>
+	</system_property>
+	<system_property>
+		<key>pki.renewal_monitor.notification.time_unit</key>
+		<value>DAYS</value>
+	</system_property>
+
+	<system_property>
+		<key>com.jamfsoftware.jss.objects.clouddistributionpoint.ccm.defaultUrl</key>
+		<value>https://localhost</value>
+	</system_property>
+</system_properties>
+

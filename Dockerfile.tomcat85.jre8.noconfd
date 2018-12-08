@@ -2,6 +2,10 @@ FROM tomcat:8.5-jre8
 
 MAINTAINER Mosen <mosen@users.noreply.github.com>
 
+ENV TOMCAT_JMX_JAR_TGZ_URL=https://archive.apache.org/dist/tomcat/tomcat-$TOMCAT_MAJOR/v$TOMCAT_VERSION/bin/extras/catalina-jmx-remote.jar
+RUN curl -kSL ${TOMCAT_JMX_JAR_TGZ_URL} -o catalina-jmx-remote.jar && \
+    mv catalina-jmx-remote.jar /usr/local/tomcat/lib/catalina-jmx-remote.jar
+
 RUN rm -rf /usr/local/tomcat/webapps/*
 ADD ROOT.war /usr/local/tomcat/webapps/ROOT.war
 WORKDIR /usr/local/tomcat/webapps

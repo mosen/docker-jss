@@ -79,15 +79,13 @@ export CATALINA_OPTS="$CATALINA_OPTS -server"
 # and remove ability for applications to call explicit GC collection
 export CATALINA_OPTS="$CATALINA_OPTS -XX:+DisableExplicitGC"
 
-# Enable JMX
+# Enable JMX - Requires the addition of a JmxRemoteLifecycleListener to make it listen on a fixed port.
 HOST=$(hostname)
 
 export CATALINA_OPTS="$CATALINA_OPTS -Dcom.sun.management.jmxremote \
-  -Djava.awt.headless=true \
-  -Dcom.sun.management.jmxremote.port=8999 \
   -Dcom.sun.management.jmxremote.ssl=false \
-  -Dcom.sun.management.jmxremote.authenticate=false \
-  -Djava.rmi.server.hostname=${HOST}"
+  -Dcom.sun.management.jmxremote.authenticate=false"
+# com.sun.management.jmxremote.port not needed when using JmxRemoteLifecycleListener
 
 
 # Check for application specific parameters at startup
