@@ -7,6 +7,14 @@ Based on [the official Tomcat image, version 8.0-jre8](https://registry.hub.dock
 
 Based upon Nick McSpaddens original docker-jss repository. Apologies to Nick McSpadden.
 
+Similar Projects
+----------------
+
+Just recently JAMF released semi-official images for JAMF Pro.
+
+- [JAMF Pro Docker Image](https://github.com/jamf/jamfpro)
+- [JAMF Pro Kubernetes Manifests](https://github.com/jamf/kubernetesManifests)
+
 How To Use The Container:
 -----
 1. You need to obtain these things on your own, due to EULA agreements.  This is why I cannot distribute this as a Docker image:
